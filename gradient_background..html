@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gradient changer</title>
+
+    <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-image 0.5s ease-in-out;
+    color: #fff;
+  }
+
+  section {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  button {
+    padding: 0.6rem 1.5rem;
+    margin: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #ffffffdd;
+    color: #333;
+    transition: transform 0.2s ease, background-color 0.3s;
+  }
+
+  button:hover {
+    transform: scale(1.05);
+    background-color: #ffffff;
+  }
+
+  h2 {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .copycode {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    font-size: 1rem;
+    word-break: break-all;
+  }
+</style>
+
+
+</head>
+<body>
+    <section>
+        <div>
+            <button id="btn1">left</button>
+            <button id="btn2">right</button>
+        </div>
+        <h2>click to change</h2>
+        <div class="copycode">
+            default text
+        </div>
+    </section>
+
+
+    <script>
+        let btn1 =document.getElementById("btn1");
+        let btn2 =document.getElementById("btn2");
+        let text=document.getElementsByClassName("copycode")[0];
+        
+        let color1="#047eea";
+        let color2="#0ba5aa";
+
+                // Initial background
+        document.body.style.backgroundImage = `linear-gradient(to right, ${color1}, ${color2})`;
+        text.innerHTML = `rgb1: ${color1} rgb2: ${color2}`;
+
+        const handleButton1=()=>{
+            let hex="0123456789abcdef";
+            color1="#";
+            for (let i = 0; i < 6; i++)	{
+                let rand=Math.floor(Math.random()*16)
+                color1+=(hex[rand]);
+            }
+            //return color;  
+            document.body.style.backgroundImage=`linear-gradient(to right, ${color1},${color2})`
+
+            //change btn1 text
+            btn1.innerHTML=color1;
+
+            //change color name text
+            text.innerHTML=`rgb1: ${color1} rgb2:  ${color2}`;
+        }
+        //////////////////////////////
+        const handleButton2=()=>{
+            let hex="0123456789abcdef";
+            color2="#";
+            for (let i = 0; i < 6; i++)	{
+                let rand=Math.floor(Math.random()*16)
+                color2+=(hex[rand]);
+            }
+            //return color;  
+            document.body.style.backgroundImage=`linear-gradient(to left, ${color2},${color1})`
+            
+            //change btn1 text
+            btn2.innerHTML=color2;
+
+            //change color name text
+            text.innerHTML=` rgb1: ${color1}  rgb2: ${color2}`;
+        }
+        
+        btn1.addEventListener("click",handleButton1)
+        btn2.addEventListener("click",handleButton2)
+    </script>
+
+</body>
+</html>
